@@ -4,6 +4,7 @@ var Graph = require('ngraph.graph');
 var _ = require('underscore');
 var Q = require('Q');
 var Nlayout = require('ngraph.asyncforce');
+var removeOverlaps = require('ngraph.remove-overlaps');
 // registers the extension on a cytoscape lib ref
 
 var ngraph = function (cytoscape) {
@@ -249,6 +250,7 @@ var ngraph = function (cytoscape) {
 
                     for (var i = 0; i < layoutOptions.iterations; i++) {
                         L.step()
+                        removeOverlaps(L);
                     }
                     layout.trigger({type: 'layoutstop', layout: layout});
                     layout.trigger({type: 'layoutready', layout: layout});
