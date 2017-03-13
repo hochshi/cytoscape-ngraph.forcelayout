@@ -132,6 +132,8 @@ var ngraph = function (cytoscape) {
                  })
 
                  });*/
+                removeOverlaps(L);
+
                 nodes.positions(function (i, node) {
                     if (!node.data('dragging'))
                         return L.getNodePosition(node.id())
@@ -249,7 +251,7 @@ var ngraph = function (cytoscape) {
                 } else {
 
                     for (var i = 0; i < layoutOptions.iterations; i++) {
-                        L.step()
+                        L.step();
                         removeOverlaps(L);
                     }
                     layout.trigger({type: 'layoutstop', layout: layout});
